@@ -1,0 +1,53 @@
+SET @nombre = "Fede";
+//crea variable y le asigna un valor
+SELECT @nombre;
+//Muestra el valor de la variable
+SELECT @nombre,@edad;
+//Muestra el valor de 2 variables
+CREATE DATABASE mi_base_de_datos;
+//crea una base de datos
+SHOW DATABASES;
+//muestra las bases de datos existentes
+DROP DATABASE mi_base_de_datos;
+//Elimina la base de datos que yo le digo
+USE miBaseDeDatos;
+//selecciono con que base de datos quiero trabajar
+Los scripts tienen que estar en formato .sql
+/* Comentario en mySql */
+ 
+CREATE TABLE alumnos(
+	id INT,
+	nombre VARCHAR(25),
+	apellido VARCHAR(25),
+	genero CHAR(1),
+	fechaNacimiento DATE,
+	nacionalidad VARCHAR(40),
+);
+
+SHOW TABLES;
+/*retorna un listado de todas las tablas*/
+
+SELECT DATABASE();
+/*Nos indica en que base de datos estamos trabajando. Database() es una funcion que retorna la base de datos en la que estoy trabajando*/
+
+DROP TABLE alumnos;
+/*elimina la tabla alumnos*/
+
+SHOW COLUMNS FROM alumnos;
+/*muestra las columnas de la tabla alumnos y los tipos de datos que almacenan*/
+
+DESC alumnos;
+/*Es lo mismo que SHOW COLUMNS FROM*/
+
+CREATE TABLE usuarios LIKE alumnos;
+/*Crea una tabla llamada usuarios que se parece a la tabla alumnos*/
+
+INSERT INTO alumnos (id, nombre, apellido, genero, fechaNacimiento, nacionalidad)
+VALUES (156, 'Fede', 'dos Santos', 'm', '1996-09-06', 'Argentina');
+/*Es la forma de insertar registros en una tabla, el orden de las variables no importa tanto, pero si importa que coincidan el orden de variables que elegi con el orden de los datos que inserto*/
+ 
+SELECT * FROM alumnos;
+/* Me permite obtener todos los registros de la tabla alumnos*/
+
+SELECT * FROM alumnos ORDER BY id;
+/* Obtengo todos los registros de la tabla ordenados por el id*/
