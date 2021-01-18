@@ -130,3 +130,37 @@ genero ENUM ('M','F'),
 //Si uso mayusculas o minusculas le da igual y sigue andando
 //Si no inserto una m o una f, me da error
 
+
+/* Poner llave primaria para ahorrarrme usar restricciones como NOT NULL o UNIQUE*/
+autor_id INT UNSIGNED PRIMARY KEY,
+/*Si quisiera que ademas se incrementara en 1 cada nuevo registro pongo AUTO_INCREMENT*/
+autor_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+
+Llave foranea, se pone al final de la creacion de la segunda tabla
+FOREIGN KEY (autor_id) REFERENCES autores (autor_id);
+FOREIGN KEY (columna_de_mi_segunda_tabla) REFERENCES primera_tabla (columna_de_mi_primer_tabla);
+Si intento insertar un registro en la 2da tabla, tiene que tener si o si una llave foranea que coincida con una llave primaria de la primer tabla, sino me va a dar error.
+
+
+-------------MODIFICAR TABLAS usando ALTER TABLE--------------
+
+ALTER TABLE libros ADD ventas INT UNSIGNED NOT NULL;
+Agrega la columna ventas a la tabla de libros, aplica restricciones para que no hayan ventas negativas ni valores nulos.
+ALTER TABLES libros ADD stock INT UNSIGNED NOT NULL DEFAULT 10;
+Agrega la columna stock en la tabla libros con restricciones de positivos, no nulos y valor por defecto 10
+
+ALTER TABLES libros DROP COLUMN stock;
+//Borra la columna stock de la tabla libros
+
+ALTER TABLES alumnos RENAME usuarios;
+//Cambia el nombre de la tabla alumnos por usuarios
+
+ALTER TABLE usuarios ADD id INT UNSIGNED NOT NULL AUTO_INCREMENT, ADD PRIMARY KEY (id);
+//Generar una llave primaria a la tabla usuarios.
+
+ALTER TABLE usuarios ADD FOREIGN KEY(grupo_id) REFERENCES grupos(grupo_id);
+//Agregar una llave foranea a la tabla usuarios, con referencia a la tabla grupos.
+
+ALTER TABLE usuarios DROP FOREIGN KEY grupo_id;
+//Eliminar la llave foranea grupo_id de la tabla usuarios.
+
