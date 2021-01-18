@@ -165,3 +165,7 @@ ALTER TABLE usuarios DROP FOREIGN KEY grupo_id;
 //Eliminar la llave foranea grupo_id de la tabla usuarios.
 
 //-------------------------------------------------------------------------------------
+
+Para editar registros:
+
+    UPDATE tabla SET nombre = 'Mauricio', apellido = 'Mono', pais = 'Mexico', idioma = 'ES' WHERE id = '1'
