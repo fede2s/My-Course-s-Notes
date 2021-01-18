@@ -142,7 +142,7 @@ FOREIGN KEY (columna_de_mi_segunda_tabla) REFERENCES primera_tabla (columna_de_m
 Si intento insertar un registro en la 2da tabla, tiene que tener si o si una llave foranea que coincida con una llave primaria de la primer tabla, sino me va a dar error.
 
 
--------------MODIFICAR TABLAS usando ALTER TABLE--------------
+//-------------MODIFICAR TABLAS usando ALTER TABLE--------------
 
 ALTER TABLE libros ADD ventas INT UNSIGNED NOT NULL;
 Agrega la columna ventas a la tabla de libros, aplica restricciones para que no hayan ventas negativas ni valores nulos.
@@ -164,3 +164,4 @@ ALTER TABLE usuarios ADD FOREIGN KEY(grupo_id) REFERENCES grupos(grupo_id);
 ALTER TABLE usuarios DROP FOREIGN KEY grupo_id;
 //Eliminar la llave foranea grupo_id de la tabla usuarios.
 
+//-------------------------------------------------------------------------------------
