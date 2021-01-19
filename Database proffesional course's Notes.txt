@@ -169,3 +169,13 @@ ALTER TABLE usuarios DROP FOREIGN KEY grupo_id;
 Para editar registros:
 
     UPDATE tabla SET nombre = 'Mauricio', apellido = 'Mono', pais = 'Mexico', idioma = 'ES' WHERE id = '1'
+
+Para eliminar registros:
+
+    DELETE FROM tabla WHERE id = '1' [
+
+Para vaciar una tabla:
+
+    TRUNCATE TABLE tabla [Vacia todos los registros de la tabla]
+
+
