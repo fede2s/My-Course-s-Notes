@@ -164,6 +164,9 @@ ALTER TABLE usuarios ADD FOREIGN KEY(grupo_id) REFERENCES grupos(grupo_id);
 ALTER TABLE usuarios DROP FOREIGN KEY grupo_id;
 //Eliminar la llave foranea grupo_id de la tabla usuarios.
 
+ALTER TABLE usuarios ORDER BY id;
+//Ordena la tabla por id
+
 //-------------------------------------------------------------------------------------
 
 Para editar registros:
@@ -172,7 +175,10 @@ Para editar registros:
 
 Para eliminar registros:
 
-    DELETE FROM tabla WHERE id = '1' [
+    DELETE FROM tabla WHERE id = 1;
+    
+    //Si tuviera un usuario con id 5 duplicado y apellido nulo, podría usar esta línea
+    DELETE FROM tabla WHERE id = 5 AND apellido IS NULL;
 
 Para vaciar una tabla:
 
