@@ -1,0 +1,185 @@
+SET @nombre = "Fede";
+//crea variable y le asigna un valor
+SELECT @nombre;
+//Muestra el valor de la variable
+SELECT @nombre,@edad;
+//Muestra el valor de 2 variables
+CREATE DATABASE mi_base_de_datos;
+//crea una base de datos
+SHOW DATABASES;
+//muestra las bases de datos existentes
+DROP DATABASE mi_base_de_datos;
+//Elimina la base de datos que yo le digo
+USE miBaseDeDatos;
+//selecciono con que base de datos quiero trabajar
+Los scripts tienen que estar en formato .sql
+/* Comentario en mySql */
+ 
+CREATE TABLE alumnos(
+	id INT,
+	nombre VARCHAR(25),
+	apellido VARCHAR(25),
+	genero CHAR(1),
+	fechaNacimiento DATE,
+	nacionalidad VARCHAR(40),
+);
+
+
+SHOW TABLES;
+/*retorna un listado de todas las tablas*/
+
+SELECT DATABASE();
+/*Nos indica en que base de datos estamos trabajando. Database() es una funcion que retorna la base de datos en la que estoy trabajando*/
+
+DROP TABLE alumnos;
+/*elimina la tabla alumnos*/
+
+SHOW COLUMNS FROM alumnos;
+/*muestra las columnas de la tabla alumnos y los tipos de datos que almacenan*/
+
+DESC alumnos;
+/*Es lo mismo que SHOW COLUMNS FROM*/
+
+CREATE TABLE usuarios LIKE alumnos;
+/*Crea una tabla llamada usuarios que se parece a la tabla alumnos*/
+
+INSERT INTO alumnos (id, nombre, apellido, genero, fechaNacimiento, nacionalidad)
+VALUES (156, 'Fede', 'dos Santos', 'm', '1996-09-06', 'Argentina');
+/*Es la forma de insertar registros en una tabla, el orden de las variables no importa tanto, pero si importa que coincidan el orden de variables que elegi con el orden de los datos que inserto*/
+ 
+SELECT * FROM alumnos;
+/* Me permite obtener todos los registros de la tabla alumnos*/
+
+SELECT * FROM alumnos ORDER BY id;
+/* Obtengo todos los registros de la tabla ordenados por el id*/
+
+/*Si quiero insertar muchos registros, lo mejor es usar una sola vez la sentencia INSERT INTO. Indico una sola vez la cantidad de columnas y despues paso los registros como tuplas separadas por comas*/
+INSERT INTO autores (autor_id, nombre, genero, fecha_nacimiento, pais_origen)
+VALUES 	(1,'Edgar',"m","2020-05-04","Argentina"),
+			(2,"Alan","m","2019-07-28","Brasil"),
+			(3,"Poe", "f", "2017-04-7","Chile");
+
+/*Ejecutar un archivo .sql*/
+mysql -u usuario -p < ruta/archivo.sql
+
+ejemplo:	mysqul -u root -p < curso_db/sentencias.sql
+
+/*Ejecutar un archivo .sql desde el command line client*/
+SOURCE ruta/archivo.sql ;
+
+Ejemplo:	SOURCE C:\Users\FdS2\Desktop\F.sql;
+//Si pongo nombres largos me da error
+//F.sql estara subido al github 
+
+/*condicionar sentencias */
+DROP DATABASE IF EXISTS libreria_de_fede;
+CREATE DATABASE IF NOT EXISTS libreria_de_fede;
+CREATE TABLE IF NOT EXISTS libritos (
+	codigo INT,
+	titulo CHAR(50),
+	autor CHAR(50),
+	precio INT
+);
+
+/* Podemos ejecutar cualquier sentencia sin iniciar sesion con bandera -e dede el bash*/
+mysql -u root -p libreria_de_fede -e "SELECT * FROM libritos"
+
+/* Restricciones CONSTRAINS son para no almacenar datos erroneos 
+Nos ayudaran a...
+	prevenir valores nulos
+	validar columnas unicas
+	establecer llaves primarias y llaves foraneas
+	proveernos ciertas validaciones
+*/
+
+/*Prevenir valores Nulos */
+codigo INT NOT NULL,
+/*Si en mi tabla libritos quiero que todos los libros tengan si o si un codigo y en caso de no insertar un registro con codigo tendria un error*/
+CREATE TABLE libritos (
+	codigo INT NOT NULL,
+	titulo CHAR(50),
+	autor CHAR(50),
+	precio INT
+);
+
+/* Campos unicos */
+titulo CHAR(50) UNIQUE,
+/*Si yo quiero que no se repitan los valores de un campo, puedo utilizar el constraint UNIQUE*/
+
+/*Campos por Defecto*/
+/*Obtener fecha exacta*/
+SELECT current_timestamp;
+SELECT NOW(); 
+/*
+ Si yo quisiera tener un registro con fecha por defecto del momento en que se inserta en la base de datos puedo hacer lo siguiente
+	fecha_de_registro DATETIME DEFAULT current_timestamp,
+*/
+CREATE TABLE libritos (
+	codigo INT NOT NULL,
+	titulo CHAR(50),
+	autor CHAR(50),
+	precio INT,
+	fecha_de_ingreso DATETIME DEFAULT current_timestamp
+);
+
+/*Numeros positivos*/
+autor_id INT UNSIGNED NOT NULL,
+
+/*Tipo de Dato Enum*/
+genero ENUM ('M','F'), 
+//Si uso mayusculas o minusculas le da igual y sigue andando
+//Si no inserto una m o una f, me da error
+
+
+/* Poner llave primaria para ahorrarrme usar restricciones como NOT NULL o UNIQUE*/
+autor_id INT UNSIGNED PRIMARY KEY,
+/*Si quisiera que ademas se incrementara en 1 cada nuevo registro pongo AUTO_INCREMENT*/
+autor_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+
+Llave foranea, se pone al final de la creacion de la segunda tabla
+FOREIGN KEY (autor_id) REFERENCES autores (autor_id);
+FOREIGN KEY (columna_de_mi_segunda_tabla) REFERENCES primera_tabla (columna_de_mi_primer_tabla);
+Si intento insertar un registro en la 2da tabla, tiene que tener si o si una llave foranea que coincida con una llave primaria de la primer tabla, sino me va a dar error.
+
+
+//-------------MODIFICAR TABLAS usando ALTER TABLE--------------
+
+ALTER TABLE libros ADD ventas INT UNSIGNED NOT NULL;
+Agrega la columna ventas a la tabla de libros, aplica restricciones para que no hayan ventas negativas ni valores nulos.
+ALTER TABLES libros ADD stock INT UNSIGNED NOT NULL DEFAULT 10;
+Agrega la columna stock en la tabla libros con restricciones de positivos, no nulos y valor por defecto 10
+
+ALTER TABLES libros DROP COLUMN stock;
+//Borra la columna stock de la tabla libros
+
+ALTER TABLES alumnos RENAME usuarios;
+//Cambia el nombre de la tabla alumnos por usuarios
+
+ALTER TABLE usuarios ADD id INT UNSIGNED NOT NULL AUTO_INCREMENT, ADD PRIMARY KEY (id);
+//Generar una llave primaria a la tabla usuarios.
+
+ALTER TABLE usuarios ADD FOREIGN KEY(grupo_id) REFERENCES grupos(grupo_id);
+//Agregar una llave foranea a la tabla usuarios, con referencia a la tabla grupos.
+
+ALTER TABLE usuarios DROP FOREIGN KEY grupo_id;
+//Eliminar la llave foranea grupo_id de la tabla usuarios.
+
+ALTER TABLE usuarios ORDER BY id;
+//Ordena la tabla por id
+
+//-------------------------------------------------------------------------------------
+
+Para editar registros:
+
+    UPDATE tabla SET nombre = 'Mauricio', apellido = 'Mono', pais = 'Mexico', idioma = 'ES' WHERE id = '1'
+
+Para eliminar registros:
+
+    DELETE FROM tabla WHERE id = 1;
+    
+    //Si tuviera un usuario con id 5 duplicado y apellido nulo, podría usar esta línea
+    DELETE FROM tabla WHERE id = 5 AND apellido IS NULL;
+
+Para vaciar una tabla:
+
+    TRUNCATE TABLE tabla [Vacia todos los registros de la tabla]
