@@ -5,7 +5,8 @@ Guardo constantes con const, el identificador por convención va en mayúsculas
 
 Si uso los operadores numero++ dentro de un console.log, primero va a imprimir y después va a sumar. La forma correcta de usarlo sería ++numero para que primero sume y después imprima
 
-cadenas de caracteres
+---------------------------------------------------------------------------------
+				CADENAS DE CARACTERES
 vamos a ver propiedades y métodos
 
 Propiedades
@@ -24,3 +25,28 @@ Métodos ECMAS 6
 	.endsWith(valor [,longitud]) Sirve para saber si la cadena termina con ese valor, devuelve un booleano. La longitud marca cuantos caracteres queremos analizar, los n primeros caracteres.
 	.includes(valor [,inicio]) Hace lo mismo que .indexOf() pero devuelve un booleano en vez de la posición
 	.repeat(n) devuelve un string que repite n cantidad de veces el original.
+
+Template Strings: se usan para no andar concatenando, sino reservar un espacio en el string previamente. Lo que se meta dentro, se puede ejecutar."Es como un hueco para incluir en un string cualquier cosa que sea válida en javascript"
+
+Ejemplos de Template Strings	
+
+	ejemplo1	`esto es una plantilla para mostrar el numero ${numero} sin concatenar`
+
+	ejemplo2	`El usuario ${nombre} ${apellido} se ha unido al chat`
+
+Link para aprender todo sobre strings: https://www.w3schools.com/jsref/jsref_obj_string.asp
+---------------------------------------------------------------------------------
+				Objeto Math
+Se utiliza para operaciones matemáticas específicas
+Propiedades:
+	Math.E
+	Math.Pi
+
+Métodos:
+	.abs(x) devuelve el valor absoluto de x
+	.ceil(x) devuelve el entero más pequeño mayor o igual que un número
+	.floor(x) devuelve el entero más grande menor o igual que un número
+	.pow(x,y) devuelve x^y
+	.random() genera un número pseudoaleatorio entre 0 y 1
+	.round(x) devuelve el valor de un número redondeado al entero más cercano
+	.sign(x) devuelve el signo de x, indica si es +, - o cero
