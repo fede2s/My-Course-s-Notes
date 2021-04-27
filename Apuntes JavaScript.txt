@@ -6,14 +6,22 @@ Guardo constantes con const, el identificador por convención va en mayúsculas
 Si uso los operadores numero++ dentro de un console.log, primero va a imprimir y después va a sumar. La forma correcta de usarlo sería ++numero para que primero sume y después imprima
 
 ---------------------------------------------------------------------------------
+
 				CADENAS DE CARACTERES
+
 vamos a ver propiedades y métodos
 
-Propiedades
+Propiedades:
+
 	.length muestra el largo
-Métodos
-	.toUpperCase() devuelve la cadena en mayúsculas sin modificar la cadena original
-	.toLowerCase() devuelve la cadena en minúsculas sin modificar la cadena original
+
+Métodos: 
+
+	-no modifican la cadena original
+	- [,parametro] es un parametro opcional
+
+	.toUpperCase() devuelve la cadena en mayúsculas
+	.toLowerCase() devuelve la cadena en minúsculas
 	.indexOf("cadena a buscar") me devuelve la posición de la cadena a buscar en la cadena original
 	.replace(valor a buscar, valor a reemplazar) reemplaza cadenas dentro de la cadena a la cuál se le aplica
 	.substring(inicio [,fin]) extrae los caracteres desde el inicio hasta el fin. El parámetro fin es opcional.
@@ -50,4 +58,120 @@ Métodos:
 	.pow(x,y) devuelve x^y
 	.random() genera un número pseudoaleatorio entre 0 y 1
 	.round(x) devuelve el valor de un número redondeado al entero más cercano
-	.sign(x) devuelve el signo de x, indica si es +, - o cero
+	.sign(x) devuelve -1, 0 o 1 según el signo de x
+
+Número aleatorio entre 0 y 100
+	Math.round( Math.random() * 100) )
+
+Número aleatorio entre 5 y 10
+	Math.round( Math.random() * (10-5) + 5 )
+En forma genérica...
+	Math.round( Math.random() * (max-min) + min )
+
+---------------------------------------------------------------------------------
+
+				Condicionales
+
+Veremos las estructuras de control if, switch y el operador ternario ?
+
+-------------------------
+
+if(condición) 1sentencia;
+
+-------------------------
+
+if(condición) sentencia1
+else sentencia2;
+
+-------------------------
+if(condición){
+	sentencia1;
+	sentencia2;
+	...;
+}
+
+-------------------------
+
+if(condición){
+	sentencia1;
+	sentencia2;
+	...;
+}else{
+	sentencia3;
+	sentencia4;
+	...;
+}
+
+-------------------------
+
+if(condición){
+	sentencia1;
+	sentencia2;
+	...;
+}else if(condición2){
+	sentencia3;
+	sentencia4;
+	...;
+}else{
+	sentencia5;
+	sentencia6;
+	...;
+}
+
+-------------------------
+
+switch (variable) {
+	case valor1:
+		sentencias;
+		break;
+	case valor2:
+		sentencias;
+		break;
+	default:
+		sentencias;
+}
+
+-------------------------
+
+switch (variable) {
+	case valor1:
+	case valor2:
+	case valor3:
+		sentencias;
+		break;
+	default:
+		sentencias;
+}
+
+-------------------------------------------------
+		Operador Ternario
+
+	(condición) ? casoVerdadero : casoFalso ;
+
+Ejemplo:
+
+let num = prompt("Ingrese un número y le digo si es par o impar");
+
+(num%2 == 0) ? console.log(`${num} es par`) : console.log(`${num} es impar`);
+
+---------------------------------------------------------------------------------
+
+				Entrada y salida de datos
+
+				Entrada de datos
+//Ingresar dato por ventana con mensaje
+let a = prompt('Introduzca un número');
+
+
+				Salida de datos
+//Imprimir en consola
+console.log(variable);
+
+//escribir en html conociendo el id del elemento a modificar
+Document.getElementById("id del elemento html").innerHTML = string;
+
+//escribir en html conociendo el id del elemento a modificar
+id.textContent= string;
+
+
+
