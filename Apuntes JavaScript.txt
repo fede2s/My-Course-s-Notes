@@ -37,7 +37,8 @@ Ejemplos de Template Strings
 Link para aprender todo sobre strings: https://www.w3schools.com/jsref/jsref_obj_string.asp
 ---------------------------------------------------------------------------------
 				Objeto Math
-Se utiliza para operaciones matemáticas específicas
+Se utiliza para operaciones matemáticas específicas. Es un objeto estático, tenemos que utilizar su nombre para acceder a sus métodos y propiedades. No podemos construir otro objeto de la misma clase.
+
 Propiedades:
 	Math.E
 	Math.Pi
