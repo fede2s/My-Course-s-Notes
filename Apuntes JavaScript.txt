@@ -164,11 +164,14 @@ let a = prompt('Introduzca un número');
 
 
 				Salida de datos
+//Sacar datos por una ventana
+alert(string);
+
 //Imprimir en consola
 console.log(variable);
 
 //escribir en html conociendo el id del elemento a modificar
-Document.getElementById("id del elemento html").innerHTML = string;
+document.getElementById("id del elemento html").innerHTML = string;
 
 //escribir en html conociendo el id del elemento a modificar
 id.textContent= string;
