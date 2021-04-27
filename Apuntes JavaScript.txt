@@ -1,0 +1,26 @@
+Lenguaje case sensitive
+Lenguaje de tipado dinámico (los tipos de datos pueden cambiar)
+Reservo variables con let, anteriormente se reservaba con var, pero da problemas en bucles.
+Guardo constantes con const, el identificador por convención va en mayúsculas
+
+Si uso los operadores numero++ dentro de un console.log, primero va a imprimir y después va a sumar. La forma correcta de usarlo sería ++numero para que primero sume y después imprima
+
+cadenas de caracteres
+vamos a ver propiedades y métodos
+
+Propiedades
+	.length muestra el largo
+Métodos
+	.toUpperCase() devuelve la cadena en mayúsculas sin modificar la cadena original
+	.toLowerCase() devuelve la cadena en minúsculas sin modificar la cadena original
+	.indexOf("cadena a buscar") me devuelve la posición de la cadena a buscar en la cadena original
+	.replace(valor a buscar, valor a reemplazar) reemplaza cadenas dentro de la cadena a la cuál se le aplica
+	.substring(inicio [,fin]) extrae los caracteres desde el inicio hasta el fin. El parámetro fin es opcional.
+Ej:	.substring(3,7) devuelve una cadena con los caracteres que estén entre 3 y 7 en la cadena original.
+	.slice(inicio [,fin]) hace lo mismo que substring, pero admite caracteres negativos para marcar que empiece de derecha a izquierda o que ignore los últimos caracteres
+	.trim() elimina espacios al inicio y al final de una cadena.
+Métodos ECMAS 6
+	.startsWith(valor [,inicio]) Sirve para saber si una cadena empieza con ese valor, devuelve un booleano.
+	.endsWith(valor [,longitud]) Sirve para saber si la cadena termina con ese valor, devuelve un booleano. La longitud marca cuantos caracteres queremos analizar, los n primeros caracteres.
+	.includes(valor [,inicio]) Hace lo mismo que .indexOf() pero devuelve un booleano en vez de la posición
+	.repeat(n) devuelve un string que repite n cantidad de veces el original.
