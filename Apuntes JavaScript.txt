@@ -71,6 +71,7 @@ En forma genérica...
 ---------------------------------------------------------------------------------
 
 				Condicionales
+			 (Estructuras de Selección)
 
 Veremos las estructuras de control if, switch y el operador ternario ?
 
@@ -155,6 +156,46 @@ let num = prompt("Ingrese un número y le digo si es par o impar");
 (num%2 == 0) ? console.log(`${num} es par`) : console.log(`${num} es impar`);
 
 ---------------------------------------------------------------------------------
+				    Bucles
+			 (Estructuras de repetición)
+
+Vamos a ver los bucles while / do while / for / for of / for in
+Con ECMAS 6 llegaron los bucles for of y for in y también la palabra reservada continue para saltar ciclos sin romper arrays.
+Con break; salgo del ciclo.
+Con continue; paso al ciclo siguiente sin terminar lo que estaba haciendo.
+
+------------------
+while(condición){
+	codigo;
+	codigo;
+}
+------------------
+do{
+	codigo;
+	codigo;
+}while(condición)
+----------------------
+for(let i=0;i<10;i++){
+	codigo;
+	codigo;
+}
+------------------------------
+//for of
+for (let elemento of array){
+	console.log( elemento );
+}
+//usamos el elemento
+
+-------------------------------------
+//for in
+for (let indice in array){
+	console.log( array[indice] );
+}
+
+//for in es más usado para objetos.
+//usamos el índice
+
+---------------------------------------------------------------------------------
 
 				Entrada y salida de datos
 
@@ -177,4 +218,52 @@ document.getElementById("id del elemento html").innerHTML = string;
 id.textContent= string;
 
 
+---------------------------------------------------------------------------------
 
+				Arrays
+
+Son estructuras que nos permiten almacenar varios datos y agruparlos.
+Se pueden llenar con cualquier tipo de dato válido de javascript y deben ir separados por comas.
+Se pueden mezclar tipos de datos, pero no es recomendable.
+Se declaran con [ ]
+Pueden declararse vacíos o con un contenido establecido.
+Pueden añadirse o eliminarse elementos cuando queramos, no tienen longitud definida. Se comportan como listas de otros lenguajes de programación.
+
+let numeros=[];
+
+numeros=[1,2,3,4,5];
+
+console.log(numeros[4]);	//imprime el 5
+
+Propiedades:
+	.length devuelve el número de posiciones que tiene el array
+
+Métodos:
+	//Métodos con el objeto Array
+	Array.isArray(variable a evaluar) //devuelve si la variable es array
+
+	//Métodos para eliminar elementos
+	.shift() //elimina y devuelve el primer elemento
+	.pop() //elimina y devuelve el último elemento
+
+	//Métodos para añadir elementos
+	.push(elemento1,elemento2,...) //añade uno o más elementos al final y devuelve la nueva longitud.
+	.unshift(elemento1,elemento2,...) //añade uno o más elementos al comienzo y devuelve la nueva longitud.
+
+	//Métodos de búsqueda. Si no encuentra, devuelve -1
+	.indexOf(valor)	//me devuelve el primer índice del elemento que coincida con el valor especificado
+	.lastIndexOf(valor) //me devuelve el último índice del elemento que coincida con el valor especificado
+
+	//Otros métodos
+	.reverse() da vuelta el array, modifica el original
+	.join(string) devuelve un string con un separador que por defecto son comas. Se puede pasar por parámetro un string para que tenga otro separador.
+	.splice(a,b,items) elimina y agrega elementos
+	//a: desde donde empiezo
+	//b: ¿cuantos elementos elimino?
+	//items: elementos para agregar
+	Ejemplos
+		splice(3) elimina desde la posición 3 hasta el final
+		splice(2,2) desde la posición 2, elimina 2 elementos
+		splice(2,2,45,23,10) borra 2 numeros e inserta 3
+		splice(6,0,'fede') en la posición 6 borro 0 elementos e inserto 'fede'
+	.slice(a,b) extrae elementos de un array desde a hasta b
