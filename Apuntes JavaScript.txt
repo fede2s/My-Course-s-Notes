@@ -9,32 +9,75 @@ Si uso los operadores numero++ dentro de un console.log, primero va a imprimir y
 
 				CADENAS DE CARACTERES
 
+Link para aprender todo sobre strings: https://www.w3schools.com/jsref/jsref_obj_string.asp
+
 vamos a ver propiedades y métodos
 
-Propiedades:
+				    Propiedades
 
 	.length muestra el largo
 
-Métodos: 
 
+				     Métodos 
+Notas:
 	-no modifican la cadena original
 	- [,parametro] es un parametro opcional
 
-	.toUpperCase() devuelve la cadena en mayúsculas
-	.toLowerCase() devuelve la cadena en minúsculas
-	.indexOf("cadena a buscar") me devuelve la posición de la cadena a buscar en la cadena original
-	.replace(valor a buscar, valor a reemplazar) reemplaza cadenas dentro de la cadena a la cuál se le aplica
-	.substring(inicio [,fin]) extrae los caracteres desde el inicio hasta el fin. El parámetro fin es opcional.
-Ej:	.substring(3,7) devuelve una cadena con los caracteres que estén entre 3 y 7 en la cadena original.
-	.slice(inicio [,fin]) hace lo mismo que substring, pero admite caracteres negativos para marcar que empiece de derecha a izquierda o que ignore los últimos caracteres
-	.trim() elimina espacios al inicio y al final de una cadena.
-Métodos ECMAS 6
-	.startsWith(valor [,inicio]) Sirve para saber si una cadena empieza con ese valor, devuelve un booleano.
-	.endsWith(valor [,longitud]) Sirve para saber si la cadena termina con ese valor, devuelve un booleano. La longitud marca cuantos caracteres queremos analizar, los n primeros caracteres.
-	.includes(valor [,inicio]) Hace lo mismo que .indexOf() pero devuelve un booleano en vez de la posición
-	.repeat(n) devuelve un string que repite n cantidad de veces el original.
 
-Template Strings: se usan para no andar concatenando, sino reservar un espacio en el string previamente. Lo que se meta dentro, se puede ejecutar."Es como un hueco para incluir en un string cualquier cosa que sea válida en javascript"
+
+
+.toUpperCase()		Devuelve la cadena en mayúsculas
+
+
+.toLowerCase()		Devuelve la cadena en minúsculas
+
+
+.indexOf("cadena a buscar")
+indexOf me devuelve la posición de la cadena a buscar en la cadena original
+
+
+.replace(valor a buscar, valor a reemplazar)
+Reemplaza cadenas dentro de la cadena a la cuál se le aplica
+
+
+.substring(inicio [,fin])
+Extrae los caracteres desde el inicio hasta el fin. El parámetro fin es opcional.
+Ejemplo:   .substring(3,7)
+Devuelve una cadena con los caracteres que estén entre 3 y 7 en la cadena original.
+
+
+.slice(inicio [,fin])
+Hace lo mismo que substring, pero admite caracteres negativos para marcar que empiece de derecha a izquierda o que ignore los últimos caracteres
+
+
+.trim()
+Elimina espacios al inicio y al final de una cadena.
+
+			----------------------------------
+
+				 Métodos ECMAS 6
+
+.startsWith(valor [,inicio]) 
+Sirve para saber si una cadena empieza con ese valor, devuelve un booleano.
+
+
+.endsWith(valor [,longitud]) 
+Sirve para saber si la cadena termina con ese valor, devuelve un booleano. La longitud marca cuantos caracteres queremos analizar, los n primeros caracteres.
+
+
+.includes(valor [,inicio]) 
+Hace lo mismo que .indexOf() pero devuelve un booleano en vez de la posición
+
+
+.repeat(n) 
+Devuelve un string que repite n cantidad de veces el original.
+
+
+			----------------------------------
+
+				Template Strings
+
+Se usan para no andar concatenando, sino reservar un espacio en el string previamente. Lo que se meta dentro, se puede ejecutar."Es como un hueco para incluir en un string cualquier cosa que sea válida en javascript"
 
 Ejemplos de Template Strings	
 
@@ -42,9 +85,38 @@ Ejemplos de Template Strings
 
 	ejemplo2	`El usuario ${nombre} ${apellido} se ha unido al chat`
 
-Link para aprender todo sobre strings: https://www.w3schools.com/jsref/jsref_obj_string.asp
 ---------------------------------------------------------------------------------
+
+				Arrays Parte 2
+
+			     Métodos más complejos
+
+.from(iterable)
+convierte en array un objeto iterable (que se puede recorrer). Ejemplos: string, array. Se usa para el DOM. Es parecido a .split()
+
+
+.sort([callback])
+Ordena los elementos de un array alfabéticamente según el valor UNICODE, si le pasamos un callback (función) ordena en función del algoritmo que le pasemos
+
+Ejemplo de método .sort()
+
+	let letras=['b','c','z','a'];
+	console.log(letras.sort());
+	//Muestra ['a','b','c','z']
+
+	let numeros=[1,8,100,300,3];
+	console.log(numeros.sort());
+	//muestra [1,100,3,300,8] porque ordena según la tabla unicode
+	console.log(numeros.sort(  (a,b)=>a-b  )  );
+	//muestra [1,3,8,100,300]
+	console.log(numeros.sort(  (a,b)=>b-a  )  );
+	//muestra [300,100,8,3,1]
+	
+
+---------------------------------------------------------------------------------
+
 				Objeto Math
+
 Se utiliza para operaciones matemáticas específicas. Es un objeto estático, tenemos que utilizar su nombre para acceder a sus métodos y propiedades. No podemos construir otro objeto de la misma clase.
 
 Propiedades:
@@ -145,6 +217,7 @@ switch (variable) {
 }
 
 -------------------------------------------------
+
 		Operador Ternario
 
 	(condición) ? casoVerdadero : casoFalso ;
@@ -156,6 +229,7 @@ let num = prompt("Ingrese un número y le digo si es par o impar");
 (num%2 == 0) ? console.log(`${num} es par`) : console.log(`${num} es impar`);
 
 ---------------------------------------------------------------------------------
+
 				    Bucles
 			 (Estructuras de repetición)
 
@@ -180,14 +254,19 @@ for(let i=0;i<10;i++){
 	codigo;
 }
 ------------------------------
-//for of
+
+	Bucle for of
+
 for (let elemento of array){
 	console.log( elemento );
 }
 //usamos el elemento
+//Se usa para imprimir arrays
 
 -------------------------------------
-//for in
+
+	Bucle for in
+
 for (let indice in array){
 	console.log( array[indice] );
 }
@@ -197,14 +276,17 @@ for (let indice in array){
 
 ---------------------------------------------------------------------------------
 
-				Entrada y salida de datos
+			    Entrada y salida de datos
+
 
 				Entrada de datos
+
 //Ingresar dato por ventana con mensaje
 let a = prompt('Introduzca un número');
 
 
 				Salida de datos
+
 //Sacar datos por una ventana
 alert(string);
 
@@ -220,7 +302,7 @@ id.textContent= string;
 
 ---------------------------------------------------------------------------------
 
-				Arrays
+				     Arrays
 
 Son estructuras que nos permiten almacenar varios datos y agruparlos.
 Se pueden llenar con cualquier tipo de dato válido de javascript y deben ir separados por comas.
@@ -233,37 +315,181 @@ let numeros=[];
 
 numeros=[1,2,3,4,5];
 
-console.log(numeros[4]);	//imprime el 5
+console.log(numeros[4]); //imprime el 5
 
 Propiedades:
-	.length devuelve el número de posiciones que tiene el array
+
+.length 
+Devuelve el número de posiciones que tiene el array
+
 
 Métodos:
-	//Métodos con el objeto Array
-	Array.isArray(variable a evaluar) //devuelve si la variable es array
 
-	//Métodos para eliminar elementos
-	.shift() //elimina y devuelve el primer elemento
-	.pop() //elimina y devuelve el último elemento
+			Métodos con el objeto Array
 
-	//Métodos para añadir elementos
-	.push(elemento1,elemento2,...) //añade uno o más elementos al final y devuelve la nueva longitud.
-	.unshift(elemento1,elemento2,...) //añade uno o más elementos al comienzo y devuelve la nueva longitud.
+Array.isArray(variable a evaluar) 	
+Devuelve si la variable es array
 
-	//Métodos de búsqueda. Si no encuentra, devuelve -1
-	.indexOf(valor)	//me devuelve el primer índice del elemento que coincida con el valor especificado
-	.lastIndexOf(valor) //me devuelve el último índice del elemento que coincida con el valor especificado
 
-	//Otros métodos
-	.reverse() da vuelta el array, modifica el original
-	.join(string) devuelve un string con un separador que por defecto son comas. Se puede pasar por parámetro un string para que tenga otro separador.
-	.splice(a,b,items) elimina y agrega elementos
-	//a: desde donde empiezo
-	//b: ¿cuantos elementos elimino?
-	//items: elementos para agregar
-	Ejemplos
-		splice(3) elimina desde la posición 3 hasta el final
-		splice(2,2) desde la posición 2, elimina 2 elementos
-		splice(2,2,45,23,10) borra 2 numeros e inserta 3
-		splice(6,0,'fede') en la posición 6 borro 0 elementos e inserto 'fede'
+
+
+			Métodos para eliminar elementos
+
+
+.shift() 
+Elimina y devuelve el primer elemento
+
+.pop()
+Elimina y devuelve el último elemento
+
+
+
+
+			Métodos para añadir elementos
+
+.push(elemento1,elemento2,...) 
+Añade uno o más elementos al final y devuelve la nueva longitud.
+
+.unshift(elemento1,elemento2,...)
+Añade uno o más elementos al comienzo y devuelve la nueva longitud.
+
+
+
+
+		Métodos de búsqueda. Si no encuentra, devuelve -1
+	
+.indexOf(valor)	
+Me devuelve el primer índice del elemento que coincida con el valor especificado
+
+.lastIndexOf(valor) 
+Me devuelve el último índice del elemento que coincida con el valor especificado
+
+
+
+
+				Otros métodos
+
+.reverse() 	
+Da vuelta el array, modifica el original
+
+.join(string) 
+Devuelve un string con un separador que por defecto son comas. Se puede pasar por parámetro un string para que tenga otro separador.
+
+.splice(a,b,items) 
+Elimina y agrega elementos
+a: ¿desde donde empiezo?
+b: ¿cuantos elementos elimino?
+items: elementos para agregar
+Ejemplos:
+	.splice(3) elimina desde la posición 3 hasta el final
+	.splice(2,2) desde la posición 2, elimina 2 elementos
+	.splice(2,2,45,23,10) borra 2 numeros e inserta 3
+	.splice(6,0,'fede') en la posición 6 borro 0 elementos e inserto 'fede'
 	.slice(a,b) extrae elementos de un array desde a hasta b
+
+---------------------------------------------------------------------------------
+
+				     Funciones
+
+Son fragmentos de código que escribimos para ejecutar una tarea y no volver a escribir el código más de una vez.
+Utilizarlas nos ayuda a modularizar el código
+Las funciones deben realizar una sola tarea
+
+¿Cómo se escribían las funciones en javascript anteriormente?
+
+	function nombreFuncion(parametro1, parametro2){
+		//Codigo a ejecutar
+		return loQueDevuelve
+	}
+
+¿Cómo se escriben ahora las funciones en javascript?
+
+	const nombreFuncion = (parametro1, parametro2) => {
+		//Codigo a ejecutar
+		return loQueDevuelve
+	}
+
+En las funciones flecha, si solo hay un parámetro, los paréntesis se pueden omitir.
+Tanto los parámetros como lo que devuelve la función son opcionales.
+Con funciones flecha, si no hace nada y solo devuelve los parametros, podemos poner lo que retorna después de la flecha.
+Ejemplo:
+	const nombreFuncion = (parametro1, parametro2) => parametro1+parametro2 ;
+
+	const saludar = () => console.log("Hola") ;
+	const saludarUsuario = (nombre) => console.log(`Hola ${nombre}`) ;
+
+---------------------------------------------------------------------------------
+
+				Objetos
+
+Un objeto es una estructura de datos que representa propiedades, valores y acciones o comportamientos que puede realizar el objeto.
+Los objetos tienen propiedades o atributos
+En forma genérica las propiedades se representan como pares de claves y valores, es decir...
+	clave : valor
+	key : value
+Un ejemplo...
+
+	let objeto={
+		color : rojo,
+		altura: 1.8,
+		nombre: "Fede",
+	}
+
+Para acceder a las propiedades o a los métodos se utiliza el nombre del objeto, un punto y la propiedad o método al cual queremos acceder.
+	persona.nombre;		//accedo a una propiedad
+	persona["nombre"];	//accedo a una propiedad
+	persona.caminar();	//accedo a un método
+
+Puedo imprimir cada valor de un objeto a mano, pero hay una forma mejor que es con los bucles for in
+
+for (const clave in objeto){
+	console.log(clave);	//imprime la clave. EJ: "nombre"
+	console.log(objeto[clave]); //imprime el valor. EJ: "Fede"
+}
+
+Podemos observar, que dentro de un ciclo for in, las claves se manejan como strings, porque nos dejan acceder a los valores de una propiedad usando corchetes. Siempre que usemos corchetes para acceder al valor de una propiedad, dentro de esos corchetes tiene que ir un string, entonces clave dentro del bucle es de tipo string.
+
+Si tuvieramos un array dentro de nuestro objeto y quisieramos imprimirlo, podríamos usar el método .join() para convertir en string al array y separarlo por comas.
+
+		-------------------------------------
+
+			        Clases
+
+En la programación orientada a objetos, los temas claves a aprender son: clase, herencia, objeto, método, evento, etc.
+Una clase es una plantilla que sirve como molde para crear objetos.
+En javascript, hasta ECMAS 6 no teníamos clases, la forma para crear plantillas era más tosca.
+Cuando creamos un objeto, a esa acción se la denomina instanciar un objeto.
+Las clases necesitan una función constructora, es obligatorio que se llame constructor.
+Por convención, el nombre de la clase va con mayúscula.
+
+class Persona {
+
+	constructor(nombre,apellido,edad){
+
+		this.nombre=nombre;
+		this.apellido=apellido;
+		this.edad=edad;
+
+	}
+
+}
+
+this hace referencia al objeto que creamos. Por cada this que agregue, el objeto tendrá otra propiedad.
+Los objetos pueden tener funciones asociadas a él. En este caso se les denomina MÉTODOS.
+
+class Persona {
+	constructor(nombre,apellido,edad){
+		this.nombre=nombre;
+		this.apellido=apellido;
+		this.edad=edad;
+	}
+	
+	saludar(){
+		return `Hola, me llamo ${this.nombre} y tengo ${this.edad} años`;
+	}
+}
+
+Para instanciar un objeto, usamos la palabra reservada NEW
+
+let persona1 = new Persona("Fede","dos Santos",24);
+---------------------------------------------------------------------------------
