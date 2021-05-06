@@ -5,6 +5,42 @@ Guardo constantes con const, el identificador por convención va en mayúsculas
 
 Si uso los operadores numero++ dentro de un console.log, primero va a imprimir y después va a sumar. La forma correcta de usarlo sería ++numero para que primero sume y después imprima
 
+
+
+---------------------------------------------------------------------------------
+
+			    Entrada y salida de datos
+
+
+				Entrada de datos
+
+
+Ingresar dato por ventana con mensaje
+
+	let a = prompt('Introduzca un número');
+
+
+
+
+				Salida de datos
+
+
+Sacar datos por una ventana
+	alert(string);
+
+
+Imprimir en consola
+	console.log(variable);
+
+
+Escribir en html conociendo el id del elemento a modificar
+	document.getElementById("id del elemento html").innerHTML = string;
+
+
+Escribir en html conociendo el id del elemento a modificar
+	id.textContent= string;
+
+
 ---------------------------------------------------------------------------------
 
 				CADENAS DE CARACTERES
@@ -85,33 +121,6 @@ Ejemplos de Template Strings
 
 	ejemplo2	`El usuario ${nombre} ${apellido} se ha unido al chat`
 
----------------------------------------------------------------------------------
-
-				Arrays Parte 2
-
-			     Métodos más complejos
-
-.from(iterable)
-convierte en array un objeto iterable (que se puede recorrer). Ejemplos: string, array. Se usa para el DOM. Es parecido a .split()
-
-
-.sort([callback])
-Ordena los elementos de un array alfabéticamente según el valor UNICODE, si le pasamos un callback (función) ordena en función del algoritmo que le pasemos
-
-Ejemplo de método .sort()
-
-	let letras=['b','c','z','a'];
-	console.log(letras.sort());
-	//Muestra ['a','b','c','z']
-
-	let numeros=[1,8,100,300,3];
-	console.log(numeros.sort());
-	//muestra [1,100,3,300,8] porque ordena según la tabla unicode
-	console.log(numeros.sort(  (a,b)=>a-b  )  );
-	//muestra [1,3,8,100,300]
-	console.log(numeros.sort(  (a,b)=>b-a  )  );
-	//muestra [300,100,8,3,1]
-	
 
 ---------------------------------------------------------------------------------
 
@@ -273,32 +282,6 @@ for (let indice in array){
 
 //for in es más usado para objetos.
 //usamos el índice
-
----------------------------------------------------------------------------------
-
-			    Entrada y salida de datos
-
-
-				Entrada de datos
-
-//Ingresar dato por ventana con mensaje
-let a = prompt('Introduzca un número');
-
-
-				Salida de datos
-
-//Sacar datos por una ventana
-alert(string);
-
-//Imprimir en consola
-console.log(variable);
-
-//escribir en html conociendo el id del elemento a modificar
-document.getElementById("id del elemento html").innerHTML = string;
-
-//escribir en html conociendo el id del elemento a modificar
-id.textContent= string;
-
 
 ---------------------------------------------------------------------------------
 
@@ -492,4 +475,207 @@ class Persona {
 Para instanciar un objeto, usamos la palabra reservada NEW
 
 let persona1 = new Persona("Fede","dos Santos",24);
+
 ---------------------------------------------------------------------------------
+
+				Arrays Parte 2
+
+			     Métodos más complejos
+
+.from(iterable)
+convierte en array un objeto iterable (que se puede recorrer). Ejemplos: string, array. Se usa para el DOM. Es parecido a .split()
+
+
+.sort([callback])
+Ordena los elementos de un array alfabéticamente según el valor UNICODE, si le pasamos un callback (función) ordena en función del algoritmo que le pasemos
+
+Ejemplo de método .sort()
+
+	let letras=['b','c','z','a'];
+	console.log(letras.sort());
+	//Muestra ['a','b','c','z']
+
+	let numeros=[1,8,100,300,3];
+	console.log(numeros.sort());
+	//muestra [1,100,3,300,8] porque ordena según la tabla unicode
+	console.log(numeros.sort(  (a,b) => a-b  )  );
+	//muestra [1,3,8,100,300]
+	console.log(numeros.sort(  (a,b) => b-a  )  );
+	//muestra [300,100,8,3,1]
+	
+			----------------------------------
+
+.forEach(callback(currentValue,[index]))
+Ejecuta la función indicada una vez por cada elemento del array. Index es opcional.
+Es otro tipo de bucle que tenemos en javascript y lo que recibe es un callback y también puede recibir otra cosa después del callback que sería el argumento this
+Ejemplo:
+	const listaDeNumeros=[12,25,47,84,98]
+	listaDeNumeros.forEach((elementoDeLaLista)=>console.log(elementoDeLaLista))
+	listaDeNumeros.forEach((elementoDeLaLista,index)=>console.log(`${elementoDeLaLista} está en la posición ${index}`))
+
+			----------------------------------
+.some(callback)
+Comprueba si al menos un elemento del array cumple la condición
+
+.every(callback)
+Comprueba si todos los elementos del array cumplen la condición
+
+.some() y .every() funcionan muy parecido
+Ejemplo:
+	const palabras=["Hola","mundo"];
+	palabras.some(palabrita=>palabrita.length>2);
+	//Devuelve si al menos 1 palabra tiene más de 2 letras
+
+			----------------------------------
+.map(callback)
+Transforma todos los elementos del array y devuelve un nuevo array
+
+.filter(callback)
+Filtra todos los elementos del array que cumplan la condición y devuelve un nuevo array
+
+.reduce(callback)
+Reduce todos los elementos del array a un único valor
+
+Estos 3 métodos son importantes porque me evitan usar bucles for, son más cómodos. Estos métodos recorren un array y devuelven un nuevo array salvo el método reduce() que devuelve un único valor.
+Ejemplos:
+
+	const listaDeNumeros=[12,25,47,84,98];
+	const listaTransformada=listaDeNumeros.map((numero)=>(numero*2));
+	console.log(listaTransformada);
+	
+		//...es equivalente a...//
+	for(const numbero of listaDeNumeros){
+		console.log(numero*2);
+	}
+
+	const listaFiltrada = listaDeNumeros.filter(numerito=>numerito>40);
+
+	const sumaTotal = listaDeNumeros.reduce ( (a,b) => (a+b) );
+	//Me devuelve la sumatoria de números de la lista, o sea, 266
+
+Si tuviera un array de objetos usuario donde un parámetro es online : true or false...
+	const usuariosOnline = usuarios.reduce((cont,usuario) = > {
+		if (usuario.online) cont++;
+		return cont;
+	},0)
+Esto recorre la lista de usuarios y cuenta cuantos hay online
+
+---------------------------------------------------------------------------------
+
+				Spread Operator
+			    (Operador de expansión)
+
+Se escribe como 3 puntitos suspensivos ...
+Lo que hace es expandir el contenido de un array
+
+console.log(numeros); 		//imprime [1,2,3]
+console.log(...numeros);	//imprime 1 2 3
+
+Se usa para:
+	-Enviar elementos de un array a una función
+	-Añadir un array a otro array
+	-Copiar arrays
+	-Concatenar arrays
+	-Enviar un número indefinido de argumentos a una función (parámetros REST)
+	-Librería math
+	-Eliminar elementos duplicados
+
+
+
+
+		  Enviar elementos de un array a una función
+
+Si tengo una función que recibe 3 parámetros y le quiero pasar los valores de una lista de 3 elementos, llamo a la función y como parámetro le paso el spread operator y la lista.
+
+	const lista=[1,2,3]
+	sumar(...lista);
+
+Si yo no uso el spread operator, me va a tomar que le estoy pasando 1 solo elemento y no va a funcionar.
+
+
+
+
+			   Añadir un array a otro array
+
+Si tengo una lista de usuarios y quiero agregarle los valores de una lista de nuevos usuarios, tengo que usar el método push. Como no sé cuantos usuarios nuevos voy a agregar, podría usar un for y length, pero más fácil es hacer un push con el spread operator.
+
+	usuarios.push(...nuevosUsuarios);
+
+Si quisiera agregarlos al principio de la lista, en vez de al final, tendría que hacer lo mismo, pero con el método unshift()
+
+	usuarios.unshift(...nuevosUsuarios);
+
+Si quisiera agregarlos en el medio, en tal posición sin borrar otros elementos, puedo usar el método splice()
+
+	usuarios.splice(2,0,...nuevosUsuarios);
+
+Puedo usar cualquiera de los métodos vistos de strings para agregar o quitar elementos, pero acá lo interesante es agregar elementos de un string a otro.
+
+
+
+
+				   Copiar arrays
+
+Podemos hacerlo de 2 formas
+
+	const array2 = array1;
+o...
+	const array2 = [...array1];
+
+
+
+
+				 Concatenar arrays
+
+Ya conocemos una forma de concatenar arrays usando métodos y es la siguiente
+
+	arraysConcatenados=array1.concat(array2);
+
+Ahora vamos a ver una mejor forma
+
+	arraysConcatenados=[...array1,...array2];
+
+
+
+
+			  Número Indefinido de Parámetros
+				 (Parámetros Rest)
+
+Cuando llamamos a una función desde una API, no siempre conocemos cuántos parámetros tendrán, entonces para crear una función que reciba cualquier cantidad de parámetros usamos el spread operator.
+
+	const miFuncion = (...parametros) => {
+		//codigo
+	}
+
+Los parámetros de mi función estarán dentro de un arreglo llamado parametros.
+
+
+
+
+				Librería math
+
+Hay métodos del objeto math que ya conocemos y que su problema es que funcionan con un número indefinido de parámetros. Como vimos anteriormente, el spread operator me sirve para pasar elementos de una lista como parámetros de una función.
+
+	Math.max(3,7,4);	//devuelve 7
+	let numeritos = [3,7,4]
+	Math.max(...numeritos);	//devuelve 7
+
+Acá lo interesante es que si yo agrego números a mis lista, puedo seguir utilizando el método math, pero ahora aplicado con más parámetros
+
+
+
+
+			Eliminar elementos duplicados
+
+Para esto usaremos el constructor Set que no permite elementos duplicados y lo vamos a transformar a array.
+
+	arraySinDuplicados=[...new Set(arrayConDuplicados)];
+
+
+---------------------------------------------------------------------------------
+
+					DOM
+			       (Document Object Model)
+
+				    Introducción
+
