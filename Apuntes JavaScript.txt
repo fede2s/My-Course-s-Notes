@@ -476,6 +476,28 @@ Para instanciar un objeto, usamos la palabra reservada NEW
 
 let persona1 = new Persona("Fede","dos Santos",24);
 
+
+
+
+			Desestructuración de Objetos
+
+//---Ejemplo feo de objeto-------
+const Persona = {
+	nombre : 'Pepe',
+	edad: 45,
+	casado: true,
+	hijo : {
+		nombrehijo:'Juan';
+	}
+}//------------------------------
+
+Si yo tengo un objeto, puedo extraer sus campos para constantes o variables y no tener que usar la notación del punto
+Ejemplo:
+	const {nombre,edad} = Persona;
+Importante: el nombre de las constantes o variables que extraigo debe ser el mismo nombre que las claves o keys que deseo extraer del objeto.
+Si tengo objetos dentro de objetos, puedo ir accediendo también
+	const {nombrehijo} = Persona.hijo;
+
 ---------------------------------------------------------------------------------
 
 				Arrays Parte 2
