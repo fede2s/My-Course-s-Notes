@@ -5,7 +5,15 @@ Guardo constantes con const, el identificador por convención va en mayúsculas
 
 Si uso los operadores numero++ dentro de un console.log, primero va a imprimir y después va a sumar. La forma correcta de usarlo sería ++numero para que primero sume y después imprima
 
+Unir javascript a un archivo HTML: usamos la etiqueta script y el atributo src="dirección de mi script.js". Esta etiqueta se pone por recomendación al final del body, justo antes del cierre de etiqueta.
+Ejemplo
+<body>
+	...
+	...
+	<script src="mi script.js"></script>
+</body>
 
+Antiguamente se ponía el atributo type="text/javascript", pero con ECMAScript 6 ya no es necesario.
 
 ---------------------------------------------------------------------------------
 
@@ -701,3 +709,97 @@ Para esto usaremos el constructor Set que no permite elementos duplicados y lo v
 
 				    Introducción
 
+Se considera DOM a toda la estructura html del documento. No es javascript, es simplemente una API (Aplication Programing Interface) que se utiliza a través de javascript. Es importante conocer cómo interactuar con el DOM, ya que es para lo que más usaremos javascript.
+Cada parte del árbol del documento es un NODO. Pueden ser etiquetas, atributos o contenidos de etiqueta.
+
+Hay varios tipos de nodos, los más utilizados son:
+
+	-Element node 	(número 1): Cualquier etiqueta HTML
+	-Text node 	(número 3): El contenido de la etiqueta
+	-Comment node 	(número 8): Cualquier comentario en HTML
+
+
+
+
+Con seleccionar un elemento en el inspector de contenido del navegador y escribir en consola $0 podemos acceder a él ver todo el contenido del elemento.
+
+	$0.id		me devuelve el id
+	$0.textContent 	me devuelve el contenido de la etiqueta
+	$0.nodeType	me devuelve el número del tipo de nodo
+	$0.nodeName	me devuelve el nombre de etiqueta en mayúsculas
+
+  ¡¡¡Las etiquetas, cuando trabajamos con el DOM, siempre van en mayúsculas!!!
+
+Con $0 y el punto, podemos acceder a un montón de elementos que tiene ese nodo, incluso a los nodos hijos, será necesario para esto siempre abrir la consola, seleccionar el elemento y escribir $0 para que imprima el elemento y al hacer click desplegar todos sus elementos.
+
+
+
+
+	     ¿Cómo accedemos a los elementos del DOM (a los nodos)?
+
+
+Acceder a un elemento a través de su id:
+
+	document.getElementById('id')
+
+
+Acceder solo al primer elemento que coincida con el selector css:
+
+	document.querySelector('selectorCSS')
+
+
+Acceder a todos los elementos que conicidan con el selector css:
+
+	document.querySelectorAll('selectorCSS')     //Esto devuelve un nodelist
+
+Ej1:	document.querySelectorAll(".parrafo"); //las clases css llevan puntito
+Ej2:	document.querySelectorAll("span"); //los estilos de etiqueta no llevan .
+
+
+Estos métodos para acceder a nodos se pueden combinar para tener mayor precisión
+	document.getElementById("titulo").querySelector("span")
+	//accede a una etiqueta <span> dentro de una etiqueta de id="titulo"
+
+
+
+
+Los elementos siempre se guardan en una constante, porque el elemento no va a cambiar. Lo que sí podemos cambiar, son sus propiedades.
+Ejemplo:
+	const titulo = document.getElementById("titulo");
+
+Si hacemos un console.log del elemento del DOM, obtenemos lo mismo en consola que usando $0, vemos todas sus propiedades.
+
+
+
+
+Modificar contenido de etiqueta accedida:
+
+	const titulo = document.getElementById("titulo");
+	titulo.textContent = "Nuevo título modificado en javascript";
+
+textContent es una propiedad que nos permite leer y editar. Si solo pusieramos titulo.textContent, nos mostraría el contenido de la etiqueta con id título que previamente accedimos usando document.getElementById('titulo')
+
+
+
+
+
+Modificar estilo de una clase
+
+	const parrafos = document.querySelectorAll("parrafo");
+	parrafos[0].style.color = "red";
+	//Modifico el primer nodo de la lista de nodos devuelta
+
+
+
+
+¡¡¡Una lista de nodos no es un array!!!
+Podemos utilizar el spread operator para transformar la lista en un array
+
+	const arrayDeParrafos = [ ... document.querySelectorAll("parrafo") ];
+	arrayDeParrafos.map( p => p.style.color = "green");
+
+Ahora sí se modifican todos los párrafos
+El spread operator en este caso puede darnos problemas con algunas versiones de firefox y con safari. Con internet explorer seguro que también.
+La alternativa para esto sería...
+	
+	const arrayDeParrafos = Array.from(document.querySelectorAll("parrafo"));
