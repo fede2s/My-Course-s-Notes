@@ -721,7 +721,7 @@ Hay varios tipos de nodos, los más utilizados son:
 
 
 
-Con seleccionar un elemento en el inspector de contenido del navegador y escribir en consola $0 podemos acceder a él ver todo el contenido del elemento.
+Con seleccionar un elemento en el inspector de contenido del navegador y escribir en consola $0 podemos acceder a él y ver todo el contenido del elemento.
 
 	$0.id		me devuelve el id
 	$0.textContent 	me devuelve el contenido de la etiqueta
