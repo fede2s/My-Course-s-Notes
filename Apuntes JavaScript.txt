@@ -803,3 +803,105 @@ El spread operator en este caso puede darnos problemas con algunas versiones de 
 La alternativa para esto sería...
 	
 	const arrayDeParrafos = Array.from(document.querySelectorAll("parrafo"));
+
+
+		    -------------------------------------------
+
+		    Modificar clases y atributos con javascript
+
+Primero obtenemos el elemento:
+	const elemento = document.getElementById('id');
+
+Atributos
+
+	element.getAttribute('attribute')
+	element.setAttribute("attribute", value)
+
+Clases
+
+	element.classList.add('class','class, ...)
+	element.classList.remove('class','class', ...)
+	element.classList.toggle('class'[,force]) 
+	element.classList.contains('class')
+	element.classList.replace('oldClass', newClass)
+
+-toggle: si tiene la clase la quita y, si no la tiene, se la pone. Se usa muchísimo en los menús de móvil. Force añade clases independientemente de si el método toggle devolvió true o false.
+-contains: devuelve true o false en función de si tiene la clase o no
+
+¿Por qué usar .classList.replace() en vez de cambiar el estilo con .style.propiedadcss?
+Porque cuando el código crece, se hace insostenible el andar peleando contra el código css escrito en línea de html y cuando modifico propiedades con elemento.style.propiedadDeCSS, modifico el html directamente en vez de modificar la clase.
+
+Atributos directos (podemos acceder sin desplegar al usuar $0
+
+	id
+	value
+	innerHTML (ya lo vimos)
+	textContent (ya lo vimos)
+
+-Value es para validar formularios.
+-innerHTML abarca las etiquetas dentro del elemento, textContent extrae el texto sin etiquetas.
+Ejemplo:
+<p id="ej">
+	Diferencia entre <span>uno y otro</span>
+</p>
+
+	elemento=document.getElementById('ej');
+	console.log(elemento.innerHTML);
+	//imprime: Diferencia entre <span>uno y otro</span>
+	console.log(elemento.textContent);
+	//imprime: Diferencia entre uno y otro
+
+			--------------------------------
+
+				    Eventos
+
+* Página con listado completo de eventos: https://developer.mozilla.org/es/docs/Web/Events
+* Un evento es cualquier cosa que sucede en nuestro documento
+* Tenemos muchos tipos de eventos y no siempre los ejecuta el usuario
+* Hay eventos que se ejecutan simplemente por abrir una página. Ej: leer un elemento, que carguen todos los elementos...
+	-El contenido se ha leido
+	-El contenido se ha cargado
+	-El usuario mueve el ratón
+	-El usuario pulsa una tecla
+	-La ventana se ha cerrado
+	-etc.
+
+* Hasta hace unos años, los eventos se trataban de esta forma:
+	<p onclick="funcion()">activar función</p>
+... se ponía el evento como atributo del html.
+
+Esto es algo que a día de hoy ya no se hace y no se recomienda porque estamos mezclando lenguajes por temas de mantenimiento y compatibilidad. También si queríamos utilizar varios eventos, era más complicado de detectar errores.
+
+* En ANGULAR se ve hecho así:
+	<p (click)="funcion()">activar función</p>
+
+* En Javascript lo haremos así:
+	Element.addEventListener('event', callback);
+
+Ejemplo con click
+	const boton = document.getElementById("miBoton");
+	boton.addEventListener("click", () => {
+		console.log("Hiciste click");
+	}
+
+			---------------------------
+
+			      Eventos de ratón
+
+click		cuando pulsamos el botón izquierdo del ratón
+dbclick 	cuando pulsamos 2 veces seguidas el botón izquierdo del ratón
+mouseenter	cuando entramos en la zona que tiene el evento
+mouseleave	cuando salimos de la zona que tiene el evento
+mousedown	cuando pulsamos el boton izquierdo del ratón
+mouseup		cuando soltamos el botón izquierdo del ratón
+mousemove	cuando movemos el ratón
+
+* mouseup y mousedown ayudan bastante cuando usamos la API de drag and drop
+* mousemove ejecuta una función mientras mueva el mouse dentro del contenedor o elemento de hmtl que mi script esté escuchando.
+
+
+			      Eventos de teclado
+
+keydown		cuando pulsamos una tecla
+keyup		cuando soltamos una tecla
+keypress 	cuando la pulsamos y no la soltamos
