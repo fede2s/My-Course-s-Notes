@@ -905,3 +905,60 @@ mousemove	cuando movemos el ratón
 keydown		cuando pulsamos una tecla
 keyup		cuando soltamos una tecla
 keypress 	cuando la pulsamos y no la soltamos
+
+---------------------------------------------------------------------------------
+
+				Librería Axios
+
+Axios es una librería basada en promesas para el cliente y para el servidor. Esta librería pesa solo 13k así que no repercute en la carga de la página como sí lo hace jquery. Algo importante es que tiene transformación automática cuando hacemos peticiones JSON. Podemos usar fetch/XMLHTTP request/Axios, los 3 hacen lo mismo. Lo importante es que esta librería tiene promesas y tiene soporte para internet explorer 11. 
+Axios es la mejor opción si nuestro único objetivo es hacer peticiones a una API REST, por ejemplo, para traer datos.
+Para utilizarla, lo único que tenemos que hacer es copiar el siguiente link en HTML encima de nuestro script para que siempre funcione
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+Axios es un método que recibe un objeto igual a las peticiones POST que hacíamos con fetch y como parámetros el objeto recibe el método GET y la url a la que vamos a hacer la petición
+
+			------------------------------
+
+  Ejemplito sencillo para visualizar todo lo que nos devuelve la librería axios
+
+button.addEventListener('click', () => {
+	axios ({
+		method: 'GET',
+		url: 'https://jsonplaceholder.typicode.com/users'
+	}).then (res =>{
+		console.log(res); 	//imprime todo
+		console.log(res.data); 	//imprime los datos que nos interesan
+	}).catch (err => console.log(err))	//imprime error
+})
+
+Dentro de then ponemos todo lo que queremos que haga ni bien obtenga los datos. Dentro de catch ponemos todo lo que queremos que haga si hubo un error.
+
+			------------------------------
+
+			Ejemplo de impresión de lista
+
+button.addEventListener('click', () => {
+	axios ({
+		method: 'GET',
+		url: 'https://jsonplaceholder.typicode.com/users'
+	}).then ( res => {
+		const list = document.getElementById('list')
+		const fragment = document.createDocumentFragment()
+		for (const userInfo of res.data) {
+			const listItem = document.createElement('LI')
+			listItem.textContent= `${userInfo.id}-${userInfo.name}`
+			fragment.appendChild(listItem)
+		}
+		list.appendChild(fragment)
+	}).catch (err => console.log(err))	//imprime error
+})
+
+				En el <body> de HTML...
+
+	<h1 id="title">Axios</h1>
+	<button id="button">Get Data</button>
+	<ul id="list"></ul>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="script.js"></script>
+
+			------------------------------
