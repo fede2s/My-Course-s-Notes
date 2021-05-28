@@ -906,6 +906,109 @@ keydown		cuando pulsamos una tecla
 keyup		cuando soltamos una tecla
 keypress 	cuando la pulsamos y no la soltamos
 
+
+			---------------------------
+
+			      Objeto Evento
+
+Este objeto consiste en darnos información sobre el evento. El objeto evento vive siempre y cuando haya un evento. Se envía el evento como parámetro del callback dentro del método .addEventListener(evento,callback). En general se usa la letra e, pero podemos ponerle el nombre que se nos cante.
+
+const entrada = document.getElementById("input");
+
+entrada.addEventListener('click', (e) => {
+	console.log(e);
+});
+
+target es de los datos más usados porque nos dice donde fue realizado el evento, en este caso, dónde se hizo el click. Además target es el elemento que más información tiene.
+
+Si quisieramos poner para escuchar eventos en toda la página, podemos no poner el objeto o poner window.
+Ejemplo:
+	addEventListener('evento', () => {});
+	window.addEventListener('evento', () => {});
+	alert();
+	window.alert();
+
+addEventListener('keydown', (e) => {
+	console.log(e)	//el elemento key me dice que tecla se ha pulsado
+	console.log(e.key)	//me dice que tecla se está pulsando
+}
+
+
+Si tuvieramos varios botones dentro de un contenedor y quisieramos saber qué botón se pulsa. Ponemos una escucha de eventos en el contenedor padre de los botones y obtenemos el target, dentro del cuál obtendremos el textContent
+Ejemplo:
+	botones.addEventListener('click', (e) => {
+		const botonPulsado = e.target.textContent;
+		switch (botonPulsado) {
+			case 'boton1':
+			//
+		}
+	});
+
+
+Si yo tengo un formulario y quiero enviar los datos al backend sin que salgan todos los datos en el link y se actualice la página como pasa por defecto, tengo que usar el método de evento .preventDefault()
+Con esto conseguimos que el formulario o cualquier otro elemento de html no tenga el comportamiento predeterminado.
+Ejemplo:
+	formulario.addEventListener('submit', (e) => {
+		e.preventDefault();
+		//codigo
+		//Seguramente use un POST
+		//codigo
+	});
+
+
+Los eventos los podemos usar o los podemos forzar a que se dispare.
+Ejemplo:
+	elemento.evento();
+	formulario.submit();
+
+		    -------------------------------------------
+
+		       Crear e Insertar Elementos en el DOM
+
+
+Crear un elemento: document.createElement(elemento)
+Escribir texto en un elemento: elemento.textContent = `texto`
+Escribir HTML en un elemento: elemento.innerHTML = `código HTML`
+
+Añadir un elemento al DOM: parent.appendChild(elemento)
+
+Fragmentos de código: document.createDocumentFragment()
+
+
+Ejemplo1:
+	const listaDias = document.getElementById('dias');
+
+	const dia = document.createElement('LI');
+	dia.textContent = 'Lunes';
+
+	listaDias.appendChild(dia);
+
+
+
+
+innerHTML tiene un problema y es que sobreescribe el contenido del elemento de HTML que tenga seleccionado. Si yo quisiera agregar en vez de sobreescribir, tengo que usar +=
+Ejemplo:
+	for (const dia of dias){
+		listaDias.innerHTML += `<li>${dia}</li>`;
+	}
+
+
+
+
+Cada vez que insertemos un elemento, se va a redibujar el arbol entero del DOM y es un gasto importante de recursos para el navegador. Para evitar que el navegador se sobrecargue, tenemos el método .createDocumentFragment()
+Una vez que tengamos el html, inyectamos de una sola vez todo el código de golpe.
+
+	const fragmento = document.createDocumentFragment();
+	for (const dia of dias){
+		const dia = document.createElement('LI');
+		dia.textContent = dia;
+		fragmento.appendChild(dia);
+	}
+
+	listaDias.appendChild(fragmento);//recien acá se redibuja el DOM
+
+
+
 ---------------------------------------------------------------------------------
 
 				Librería Axios
